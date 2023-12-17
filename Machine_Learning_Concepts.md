@@ -1,7 +1,5 @@
 # Machine Learning
 
-12/16/2023
-
 ## Classification Problems
 - Model is built by training it on labeled data, where the pair of features and target variables fit the model.
 - The model is used to predict the labels by giving it the unseen features/data.
@@ -27,73 +25,51 @@ knn.fit(X_train, y_train)
 # predictions on the test set
 predictions = knn.predict(X_test)
 
-# model evaluation
-print("Accuracy:", accuracy_score(y_test, predictions))
-```
-
-**Cross Validation:**
-```python
-from sklearn.model_selection import cross_val_score, KFold
-kf = KFold(n_splits=6, shuffle=True, random_state=42)
-model = LinearRegression()
-cv_results = cross_val_score(model, X_train, y_train, cv=kf)
-```
-
-**Confusion Matrix**
-The confusion matrix is particularly useful when dealing with binary classification problems (two classes), but it can also be extended to multi-class problems.
-- Accuracy = (correct predictions) / (total observations)
-
-```python
-from sklearn.metrics import classification_report, confusion_matrix
-knn = KNeighborsClassifier(n_neighbors=7)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=42)
-knn.fit(X_train, y_train)
-y_pred = knn.predict(X_test)
-```
-
-- Model Evaluation
-
-```python
-print(confusion_matrix(y_test, y_pred))
+# model performance
+training_accuracy = knn.score(X_train, y_train)
+testing_accuracy = knn.score(X_test, y_test)
 
 ```
 
-- Classification Report
+**Model Complexity**
 
-```python  
-print(classification_report(y_test, y_pred)
+Choosing the right 'k' value in KNN is crucial for achieving good model performance. It often involves experimentation
+and model evaluation on a validation set to find the 'k' that provides the best trade-off between bias (underfitting) and
+variance (overfitting) for your specific dataset and problem.
 
-```
+A larger 'k' value leads to underfitting, therefore the model is less complex.
+- Choosing a larger value of 'k' means that the model considers a large number of neighbors when making predictions
+- A larger 'k' can lead to underfitting because the model becomes overly simple and generalized. It may not capture the local variations in the data, and its predictions may be overly biased.
+- The model's decision boundary becomes very smooth, and it may not adapt well to the underlying complexity of the data.
+- Signs of underfitting include poor performance on both the training and test data, as well as a model that makes overly generalized predictions.
+- To address underfitting, consider reducing 'k' (making it smaller) or using more complex machine learning models.
 
-**ROC AUC Curve**
-ROC score method is used to validate a binary classifier (Logistic Regression)
+A smaller 'k' value leads to a model overfitting the training data.
+- Conversely, choosing a smaller 'k' considers a small number of neighbors for predictions.
+- A smaller 'k' leads to overfitting because the model becomes overly sensitive to the noise and fluctuations in the training data. It may start to memorize the training data instead of learning the underlying patterns.
+- The model's decision boundary becomes more complex, potentially capturing noise and outliers, which can result in poor generalization to new/unseen data.
+- Signs of overfitting include excellent performance on the training data but poor performance on the test data (low generalization).
+- To address overfitting, consider increasing 'k' (making it larger) or using techniques like cross-validation to select an appropriate 'k' and prevent the model from becoming too complex.
 
 ```python
-for, tpr, thresholds = roc_curve(y_test, y_pred_proba)
-plt.plot([0, 1], [0, 1], 'k--')
-plt.plot(fpr, tpr)
-plt.xlabel('False Positive Rate')
-plt.ylabel('True Positive Rate')
-plt.title('Logistic Regression ROC Curve')
+train_accuracies = {}
+test_accuracies = {}
+neighbors = np.arange(1, 26)
+for neighbor in neighbors:
+  knn = KNeighborsClassifier(n_neighbors=neighbor)
+  knn.fit(X_train, y_train)
+  train_accuracies[neighbor] = knn.score(X_train, y_train)
+  test_accuracies[neighbor] = knn.score(X_test, y_test)
+```
+
+- Plotting
+```python
+plt.figure(figsize=(8, 6))
+plt.title("KNN: Varying Number of Neighbors")
+plt.plot(neighbors, train_accuracies.values(), label="Training Accuracy")
+plt.plot(neighbors, test_accuracies.values(), label="Testing Accuracy")
+plt.legend()
+plt.xlabel("Number of Neighbors")
+plt.ylabel("Accuracy")
 plt.show()
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
