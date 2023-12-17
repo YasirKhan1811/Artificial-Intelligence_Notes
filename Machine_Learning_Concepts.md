@@ -35,3 +35,36 @@ print(confusion_matrix(y_test, y_pred))
 print(classification_report(y_test, y_pred)
 
 ```
+
+**ROC AUC Curve**
+ROC score method is used to validate a binary classifier (Logistic Regression)
+
+```python
+for, tpr, thresholds = roc_curve(y_test, y_pred_proba)
+plt.plot([0, 1], [0, 1], 'k--')
+plt.plot(fpr, tpr)
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Logistic Regression ROC Curve')
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
