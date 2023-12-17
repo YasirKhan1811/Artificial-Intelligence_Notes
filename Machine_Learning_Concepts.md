@@ -1,6 +1,6 @@
-# Machine Learning
+# Machine Learning (Classification)
 
-## Classification Problems
+## Overview
 - Model is built by training it on labeled data, where the pair of features and target variables fit the model.
 - The model is used to predict the labels by giving it the unseen features/data.
 - The model is evaluated using the actual observations and the predicted observations.
