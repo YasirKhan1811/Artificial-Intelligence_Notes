@@ -41,7 +41,7 @@ cv_results = cross_val_score(model, X_train, y_train, cv=kf)
 
 **Confusion Matrix**
 The confusion matrix is particularly useful when dealing with binary classification problems (two classes), but it can also be extended to multi-class problems.
-- Accuracy = (correct predictions) / (all predictions)
+- Accuracy = (correct predictions) / (total observations)
 
 ```python
 from sklearn.metrics import classification_report, confusion_matrix
