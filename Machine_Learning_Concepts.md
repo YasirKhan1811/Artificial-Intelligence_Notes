@@ -2,6 +2,35 @@
 
 12/16/2023
 
+## Classification Problems
+- Model is built by training it on labeled data, where the pair of features and target variables fit the model.
+- The model is used to predict the labels by giving it the unseen features/data.
+- The model is evaluated using the actual observations and the predicted observations.
+
+**k-NearestNeighors (KNN)**
+
+```python
+from sklearn.neighbors import KNeighborsClassifier
+X = df[["feature1", "feature2", "feature3"]].values
+y = df["target"].values
+print(X.shape, y.shape) # check if the sizes of the arrays are equal
+
+# splitting training and testing data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=123)
+
+# instantiate the model
+knn = KNeighborsClassifier(n_neighbors=k)
+
+# model training
+knn.fit(X_train, y_train)
+
+# predictions on the test set
+predictions = knn.predict(X_test)
+
+# model evaluation
+print("Accuracy:", accuracy_score(y_test, predictions))
+```
+
 **Cross Validation:**
 ```python
 from sklearn.model_selection import cross_val_score, KFold
