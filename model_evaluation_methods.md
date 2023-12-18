@@ -32,6 +32,12 @@ print(classification_report(y_test, y_pred)
 
 ```
 
+- Sensitivity
+  $$ Sensitivity = \True Positives // True Positives + False Negatives\, dx $$
+
+- Specificity
+  $$ Specificity = \True Negatives // True Negatives + False Positives\, dx $$
+
 **ROC AUC Curve**
 ROC score method is used to validate a binary classifier (Logistic Regression)
 
