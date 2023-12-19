@@ -32,11 +32,16 @@ print(classification_report(y_test, y_pred)
 
 ```
 
-- Sensitivity
+- Sensitivity: Percentage of correctly predicted actual positive class.
   $$ Sensitivity = \True Positives // True Positives + False Negatives\, dx $$
 
-- Specificity
+- Specificity: Percentage of correctly predicted actual negative class.
   $$ Specificity = \True Negatives // True Negatives + False Positives\, dx $$
+
+    - Precision is different, which is the percentage of predicted positives.
+    - We decide which model to choose based on the Sensitivity and Specificity scores.
+    - If predicting the +ive class is our interest, then we choose the model based on the higher sensitivity score.
+    - But if predicting the -ive class is our interest, then we choose the model based on the higher specificity score.
 
 **ROC AUC Curve**
 ROC score method is used to validate a binary classifier (Logistic Regression)
