@@ -13,6 +13,9 @@
   - Choose the line of best fit that minimizes the error
   Error function = loss function = cost function
 
+  **Ordinary Least Squares**
+  RSS = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+
 - Linear Regression in higher dimensions (Multiple Linear Regression)
   > y = a1x1 + a2x2 + b
   > 
