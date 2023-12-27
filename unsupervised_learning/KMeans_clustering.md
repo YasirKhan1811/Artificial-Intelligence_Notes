@@ -60,6 +60,48 @@ print(ct)
 
 In contrast, most datasets don't come with original categories, and they are unlabeled. To evaluate the clustering quality in such a case, there is a method called **Inertia**.
 
+A good clustering has samples in each cluster are bunched together, they are tight. This property is called **inertia**. Inertia measures the distance of each sample
+from the **centroid** (the center of the cluster). We aim for the low value of inertia, however, there is a trade-off between the number of clusters and inertia. So, we choose
+an optimum value between the low and high values of inertia.
+
+Here is the code:
+
+```python
+ks = range(1, 6)
+inertias = []
+
+for k in ks:
+    # Create a KMeans instance with k clusters: model
+    model = KMeans(n_clusters=k)
+    
+    # Fit model to samples
+    model.fit(samples)
+    
+    # Append the inertia to the list of inertias
+    inertias.append(model.inertia_)
+    
+# Plot ks vs inertias
+plt.plot(ks, inertias, '-o')
+plt.xlabel('number of clusters, k')
+plt.ylabel('inertia')
+plt.xticks(ks)
+plt.show()
+```
+
+This code plots an elbow, the value for the number of clusters is chosen at a point where the elbow starts to decrease.
+Once the optimal number of clusters has been determined, we go to build the model:
+```python
+model = KMeans(n_clusters=3) # let's assume there are three clusters
+labels = model.fit_predict(samples)
+
+# Using crosstabulation to compare the original labels with the clusters' labels:
+df = pd.DataFrame({'labels': labels, 'variesties':variesties}) # variesties is the orginal list of labels
+ct = pd.crosstab(df['labels'], df['varieties'])
+print(ct)
+```
+
+### Transforming Features for Better Clustering
+
 
 
 
