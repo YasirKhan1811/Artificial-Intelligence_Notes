@@ -101,7 +101,25 @@ print(ct)
 ```
 
 ### Transforming Features for Better Clustering
+For features scaling to Standardized data, where the mean of each feature is 0, and the variance becomes 1, we use **StandardScaler()**.
+However, if we have to scale records/samples in our data, then we use **Normalizer()**.
 
+```python
+scaler = StandardScaler()
+model = KMeans(n_clusters=3)
+pipeline = make_pipeline(scaler, model)
+pipeline.fit(samples)
+cluster_labels = pipeline.predict(samples)
+```
+### Data Normalization
+
+```python
+from sklearn.preprocessing import Normalizer
+normalizer = Normalizer()
+kmeans = KMeans(n_clusters=10)
+pipeline = make_pipeline(normalizer, kmeans)
+pipeline.fit(movements)
+```
 
 
 
