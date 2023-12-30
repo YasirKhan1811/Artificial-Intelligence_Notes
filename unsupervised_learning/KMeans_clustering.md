@@ -121,6 +121,25 @@ pipeline = make_pipeline(normalizer, kmeans)
 pipeline.fit(movements)
 ```
 
+## Hierarchical Clustering
+
+Imagine this as a village. Starting from each resident of the village as a cluster in himself. Considering myself as an individual cluster, I meet with my brothers and sisters
+at the intersection of our parents. Similarly, each family from my cousins makes a cluster of their own. Our fathers meet with their parents and form one complete family. So, all the families in the village are clusters, whereby the village encapsulates all the families as one big cluster.
+
+```python
+from scipy.cluster.hierarchy import linkage, dendrogram
+mergings = linkage(data, method='complete')
+dendrogram(mergings, labels=names, leaf_rotation=90, leaf_font_size=6)
+plt.show()
+```
+
+The linkage function performs the clustering of samples. The clusters meet at a distance. There are two methods:
+    - 'complete' = the distance between clusters is the distance between the furthest points of the clusters.
+    - 'single' = the distance between clusters is the distance between the closest points of the clusters.
+
+
+     
+
 
 
 
