@@ -11,15 +11,15 @@ There are two ways to use PCA for feature engineering.
 
 
 **PCA use cases:** 
-- Dimensionality reduction, used when multiple features are highly correlated.
+- Dimensionality reduction, used when multiple features are highly correlated. If multiple features are highly correlated (e.g., height and weight), PCA combines them into fewer components with minimal information loss.
 - Anomaly detection, to identify unusual data points (outliers).
-- Noise Cancellation, In image processing, PCA can reduce noise in pictures while preserving the important visual information.
-- Decorrelation 
+- Noise Reduction: In image processing, PCA can reduce noise in pictures while preserving important visual information.
+- Decorrelation: In financial data, where stock prices are often correlated, PCA can create independent components, making it easier for algorithms to model the data. 
 
 **What are redundant features?**
 When two or more features are highly correlated, they contain similar information. This overlap means that one feature can be predicted from the other with little error.
 _Example:_ In a dataset with both "height" and "arm span" of individuals, these two features might be highly correlated because taller individuals typically have larger arm spans. 
-Including both doesn't add much new information.
+Including both doesn't add much new information and also contributes to high computational costs.
 
 **Why Redundancy is a Problem?**
 - Inefficiency: More features increase computational cost and complexity without adding new information.
@@ -32,6 +32,7 @@ Including both doesn't add much new information.
 - Analyze Variance: Check the explained variance ratio to see how much information each component captures.
 - Select Components: Keep components that capture significant variance (e.g., 95% of total variance) and drop those that do not.
 
+<span style="color: red;">This is a red heading</span>
 
 
 
